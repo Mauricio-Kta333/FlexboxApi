@@ -34,19 +34,14 @@
     
 }
 .fondoCarrusel {
-    background-image: url("https://los40es00.epimg.net/los40/imagenes/2020/03/23/cinetv/1584974579_141945_1584974776_noticia_normal.jpg");
+    background-image: url(../img/FondoPagina1.jpg);
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: cover;
 }
 
 .fondoPokemon {
-  background-image: url("https://thumbs.dreamstime.com/b/pokemon-va-logotipo-en-estilo-de-la-pintada-en-el-hormig%C3%B3n-74496906.jpg");
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 100%;
-  width: 100%;
-  height: 70rem;
+  background-image: url(../img/FondoPagina1.jpg);
 }
 
 @font-face {
@@ -59,6 +54,18 @@
 
 .colorLetra{
   color: aliceblue;
+}
+
+.colorNav{
+  background-color: #B3988C;
+}
+
+.colorNav1{
+  background-color: #C9BD93;
+}
+
+.colorNav2{
+  background-color: #A4BF8C;
 }
 
 /*Multi Slide Boostrap 5*/
@@ -101,3 +108,122 @@
   left: 10%;
 }
 
+.fondoPo
+{
+  background-image: url(../img/FondoPagina4.jpg);
+}
+
+.fondoTipo {
+  background-image: url(../img/FondoPagina2.jpg);
+}
+
+p.close-btn{
+  top: -4px;
+  right: 6px;
+  cursor: pointer;
+  color: #000;
+}
+
+.container{
+  max-width: 1200px;
+  text-align: center;
+  margin: auto;
+}
+.header-section{
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  position: relative;
+} 
+
+.header-section div{
+  position: relative;
+}
+.header-section p{
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: #fff;
+  padding: 1px 6px;
+  border-radius: 50%;
+  color: rgb(255, 0, 0);
+  font-weight: 700;
+  font-family: system-ui;
+  line-height: 18px;
+}
+.cart{
+  width: 40px;
+  height: 40px;
+}
+.cart-pokemons{
+  position: absolute!important;
+  top: 82px;
+  right: -18px;
+  background-color: #fff;
+  padding: 0 18px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+
+  min-width: 290px;
+}
+
+.cart:hover{
+  margin-bottom: 16px;
+  transition-duration: .5s;
+}
+
+.carts img{
+  width: 100%;
+}
+.carts p{
+  font-family: system-ui;
+  font-weight: 500;
+  padding: 0 20px;
+  margin-bottom: 24px;
+} 
+
+.carts div{
+  position: relative;
+} 
+
+.cart-pokemons .item img{
+  width: 115px;
+}
+
+.cart-pokemons .item{
+  display: flex;
+  align-items: center;
+  border-bottom: solid 2px red;
+}
+.cart-pokemons .item .item-content{
+  margin: 0 19px;
+  width: 201px;
+}
+
+.cart-pokemons .item .item-content h5{
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: system-ui;
+}
+.cart-pokemons .item .item-content h6{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: system-ui;
+}
+.cart-pokemons .item span{
+  background-color: red;
+  padding: 0px 5px;
+  border-radius: 50%;
+  color: #fff;
+  font-family: system-ui;
+  cursor: pointer;
+}
+.cart-pokemons h3{
+  margin-bottom: 0;
+}
+.cart-pokemons .item .item-content h5.cart-price{
+  font-weight: 700;
+}

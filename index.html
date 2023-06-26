@@ -11,41 +11,50 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
+  <link rel="shortcut icon" href="./img/IconoPokemon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body onload="slideType(),getAllPokemon()">
-  <!-- ejemplo de flexblox y tal
-        <div class="container">
-        <div class="altura amarillo"></div>
-        <div class="altura azul"></div>
-        <div class="altura rojo"></div>
-    </div> -->
-  <div class="container-fluid">
-    <div class="row busqueda justify-content-end">
-      <div class="col-5 bg-primary d-flex align-items-center">
-        <input class="form-control" type="text" name="txtBuscar" id="txtBuscar" onkeyup="autoCompletePokemon()" />
-      </div>
-      <div class="col-1 bg-danger d-flex align-items-center">
-        <button class="btn btn-primary">
-          buscar
-        </button>
+<body class="fondoPo" onload="slideType(),getAllPokemon()">
+  <nav class="navbar navbar-expand-lg navbar-light colorNav">
+    <div class="container-fluid">
+      <a class="navbar-brand">TIENDA POKEMONES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./inicioSesion.html">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" aria-current="page" type="button" onclick="deleteLogin()">Cerrar Sesión</a>
+        </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" name="txtBuscar" id="txtBuscar" onkeyup="autoCompletePokemon()">
+          <button class="btn btn-outline-light" type="text">Search</button>
+        </form>
       </div>
     </div>
-
-    <div class="row" style="height: 100px ">
-      <div class="col-12 bg-warning">
+  </nav>
+  <div class="container-fluid">
+    <div class="row" style="height: 100px">
+      <div class="col-12 d-flex justify-content-end">
         <ul class="list-group">
-          <li id="lista"class="list-group-item">
-            
-          </li>
+          <li id="lista-resultados" class="list-group-item"></li>
         </ul>
       </div>
     </div>
 
     <div class="row" style="height: 300px">
-      <div class="col-8 bg-info fondoCarrusel">
+      <div class="col-8 fondoCarrusel">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -57,35 +66,18 @@
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://hbomax-images.warnermediacdn.com/2022-12/TT.png?host=wme-hbomax-drupal-prod.s3.amazonaws.com" class="d-block"
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/640px-International_Pok%C3%A9mon_logo.svg.png"
+                class="d-block" style="width: 35%; height: 297px;" alt="..." />
+            </div>
+            <div class="carousel-item">
+              <img src="https://cdn.custom-cursor.com/collections/129/cover-pokemon-preview.png" class="d-block"
                 style="width: 35%; height: 297px;" alt="..." />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
-              </div>
             </div>
             <div class="carousel-item">
-              <img src="https://image.api.playstation.com/vulcan/ap/rnd/202206/0722/fG7ZzoEVtkEy96oOsbWICnXX.png" class="d-block"
-              style="width: 35%; height: 297px;" alt="..." />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>
-                  Some representative placeholder content for the second
-                  slide.
-                </p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://upload.wikimedia.org/wikipedia/en/6/67/Joel_and_Ellie_in_The_Last_of_Us.png" class="d-block"
-              style="width: 35%; height: 297px;" alt="..." />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>
-                  Some representative placeholder content for the third slide.
-                </p>
-              </div>
+              <img
+                src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2014/03/288149-origen-todos-nombres-pokemon-i.png?tf=3840x"
+                class="d-block" style="width: 35%; height: 297px;" alt="..." />
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -100,11 +92,11 @@
           </button>
         </div>
       </div>
-      <div class="col-4 bg-success"></div>
+      <div class="col-4"></div>
     </div>
 
     <div class="row" style="height: 200px">
-      <div class="col-12 bg-danger">
+      <div class="col-12">
         <div class="container my-3 mt-5" id="featureContainer">
           <div>
             <div class="row mx-auto my-auto justify-content-center">
@@ -127,102 +119,19 @@
           </div>
         </div>
       </div>
-
-      <div class="row" style="height: 300px">
-        <div class="col-12 bg-primary"></div>
-      </div>
-
-      <div class="row justify-content-between" style="height: 200px">
-        <div class="col-5 bg-info"></div>
-        <div class="col-5 bg-danger"></div>
-      </div>
-
-      <div class="row bg-dark align-content-center" style="height: 300px">
-        <div class="col-4 d-flex justify-content-center">
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-4 d-flex justify-content-center">
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-4 d-flex justify-content-center">
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 </body>
 
 </html>
-<script>
-  var nombre;
-  let apellido;
-  //los arreglos en javascript se declaran con const
-  const frutas = [];
 
-  function agregarFrutas() {
-    let buscar = document.getElementById("txtBuscar").value;
-    frutas.push(buscar);
-    frutas.forEach((element) => {
-      console.log(element);
-    });
-  }
-</script>
 <script>
-  function carousel() {
-    let myCarousel = document.querySelectorAll(
-      "#featureContainer .carousel .carousel-item"
-    );
-    myCarousel.forEach((el) => {
-      const minPerSlide = 4;
-      let next = el.nextElementSibling;
-      for (var i = 1; i < minPerSlide; i++) {
-        if (!next) {
-          // wrap carousel by using first child
-          next = myCarousel[0];
-        }
-        let cloneChild = next.cloneNode(true);
-        el.appendChild(cloneChild.children[0]);
-        next = next.nextElementSibling;
-      }
-    });
-  }
-</script>
-<script>
-  const categoriasPokemon = []
+  const categoriasPokemon1 = []
   function getTypePokemon() {
     return new Promise((resolve) => {
       fetch("https://pokeapi.co/api/v2/type")
         .then(response => response.json())
         .then(data => {
-          console.log(data.results)
           data.results.forEach(element => {
-            categoriasPokemon.push(element)
+            categoriasPokemon1.push(element)
           });
           return resolve("Ok")
         })//Termina el fech
@@ -231,8 +140,8 @@
   function slideType() {
     getTypePokemon()
       .then(data => {
-        let slide="";
-        categoriasPokemon.forEach((element, index) => {
+        let slide = "";
+        categoriasPokemon1.forEach((element, index) => {
           if (index === 0) {
             slide += `<div class="carousel-item active">
                       <div class="col-md-2">
@@ -240,7 +149,7 @@
                           <div class="card-img">
                             <a href="tipos.html" onclick="urlTypeLocal('${element.url}')">
                               <img
-                                src="https://source.unsplash.com/EBtfyalTU50/333x500"
+                                src="https://www.pngall.com/wp-content/uploads/13/Pokemon-Logo-PNG-Pic.png"
                                 class="img-fluid"
                               >
                             </a>
@@ -256,7 +165,7 @@
                           <div class="card-img">
                             <a href="tipos.html" onclick="urlTypeLocal('${element.url}')">
                               <img
-                                src="https://source.unsplash.com/EBtfyalTU50/333x500"
+                                src="https://www.pngall.com/wp-content/uploads/13/Pokemon-Logo-PNG-Pic.png"
                                 class="img-fluid"
                               >
                             </a>
@@ -273,7 +182,7 @@
         carousel()
       })
   }
-  
+
   function urlTypeLocal(valor) {
     console.log("URL")
     localStorage.setItem("url", valor)
@@ -293,14 +202,13 @@
       })
   }
 
-
-
+  getAllPokemon()
   function autoCompletePokemon() {
-
     let textoBuscar = document.getElementById('txtBuscar').value
-    if (textoBuscar.length >= 3 ) {
+
+    if (textoBuscar.length >= 1) {
       const filtroPokemon = allPokemon.filter(filtrarPokemon)
-      let lista =  `<ul>`
+      let lista = `<ul>`
       filtroPokemon.forEach(element => {
         iconoPokemon(element.url)
         lista += `<li> 
@@ -310,7 +218,9 @@
       })
       lista += `</ul>`
 
-      document.getElementById('lista').innerHTML = lista
+      document.getElementById('lista-resultados').innerHTML = lista
+    } else {
+      document.getElementById('lista-resultados').innerHTML = ''; // Oculta la lista de resultados
     }
   }
 
@@ -321,15 +231,17 @@
 
   function detallePokemon(urlPokemon) {
     localStorage.urlPokemon = urlPokemon
-    
+
   }
 
   function iconoPokemon(urlPokemon) {
     fetch(urlPokemon)
-    .then(response => response.json())
-    .then(data => {
-      let icono = data.sprites.versions["generation-viii"].icons.front_default
-      document.getElementById(`icono${data.name}`).src = `${icono}`
-    })
+      .then(response => response.json())
+      .then(data => {
+        let icono = data.sprites.versions["generation-viii"].icons.front_default
+        document.getElementById(`icono${data.name}`).src = `${icono}`
+      })
   }
 </script>
+<script src="./Js/pokemones.js"></script>
+<script src="./Js/login.js"></script>
