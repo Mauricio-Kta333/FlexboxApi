@@ -158,8 +158,8 @@ p.close-btn{
 }
 .cart-pokemons{
   position: absolute!important;
-  top: 82px;
-  right: -18px;
+  top: 50px;
+  right: 20px;
   background-color: #fff;
   padding: 0 18px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);

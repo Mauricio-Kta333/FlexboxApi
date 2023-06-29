@@ -271,10 +271,10 @@ function enviarDatosAlControlador() {
 
   // Obtén los datos del usuario que ha iniciado sesión
   const datosUsuario = {
-    id: usuario[0].id,
-    nombre: usuario[0].nombre,
-    direccion: usuario[0].direccion,
-    telefono: usuario[0].telefono
+    id: usuario.id,
+    nombre: usuario.nombre,
+    direccion: usuario.direccion,
+    telefono: usuario.telefono
   };
 
   // Calcula el total de la compra

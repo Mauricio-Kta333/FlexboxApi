@@ -6,24 +6,19 @@ $datosPokemon = json_decode(file_get_contents('php://input'), true);
 
 $pedidoMP = new \modelo\Pedidos();
 
-$responses = array();
+$codigoPedido = rand(1000, 5000);
 
-foreach ($datosPokemon['pokemones'] as $datos) {
-  $codigoPedido = rand(1000, 5000);
+$pedidoMP->setCodigoPed($codigoPedido);
+$pedidoMP->setIdUsuario($datosPokemon['usuario']['id']);
+$pedidoMP->setNombre($datosPokemon['usuario']['nombre']);
+$pedidoMP->setDireccion($datosPokemon['usuario']['direccion']);
+$pedidoMP->setTelefono($datosPokemon['usuario']['telefono']);
+$pedidoMP->setTotalPedido($datosPokemon['total']);
 
-  $pedidoMP->setCodigoPed($codigoPedido);
-  $pedidoMP->setIdUsuario($datosPokemon['usuario']['id']);
-  $pedidoMP->setNombre($datosPokemon['usuario']['nombre']);
-  $pedidoMP->setDireccion($datosPokemon['usuario']['direccion']);
-  $pedidoMP->setTelefono($datosPokemon['usuario']['telefono']);
-  $pedidoMP->setTotalPedido($datosPokemon['total']);
+$idPedido = $pedidoMP->agregarDatosUsuarios(); // Obtener el idPedido generado
 
-  $idPedido = $pedidoMP->agregarDatosUsuarios(); // Obtener el idPedido generado
-
-  $responses[] = array('idPedido' => $idPedido);
-  
-
-}
+// Solo se agrega un pedido al array de respuestas
+$responses[] = array('idPedido' => $idPedido);
 
 // Verificar si ocurrieron errores al agregar los pedidos
 $errors = array_filter($responses, function ($response) {

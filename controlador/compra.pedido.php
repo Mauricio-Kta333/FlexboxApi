@@ -20,13 +20,16 @@ foreach ($datosPokemon as $campo => $valor) {
         $datosPOS->setIdPo($idPo);
         $datosPOS->setCantidadPoCom($cantidadPoCom);
 
+        // Agregar el detalle de la compra
         $response = $datosPOS->agregarDetalleCompra();
 
         $responses[] = $response;
     }
 }
 
+// Actualizar la cantidad de pokemones en la tabla "pokemones"
+$datosPOS->actualizarCantidadPokemones();
+
 echo json_encode($responses);
 
 unset($datosPOS);
-?>

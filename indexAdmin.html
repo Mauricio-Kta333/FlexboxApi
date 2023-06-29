@@ -13,7 +13,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
-  <link rel="shortcut icon" href="./img/IconoPokemon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/IconoPokemon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -28,13 +28,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+            <a class="nav-link active" aria-current="page" href="indexAdmin.html">Inicio</a>
+          </li>
+          <li class="nav-item" id="inicioSesionLi">
+            <a class="nav-link" aria-current="page" href="inicioSesion.html">Iniciar Sesión</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="./inicioSesion.html">Iniciar Sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="./compraPokemones.html">Comprar Pokemones</a>
+            <a class="nav-link" aria-current="page" href="compraPokemones.html">Comprar Pokemones</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" aria-current="page" type="button" onclick="deleteLogin()">Cerrar Sesión</a>
@@ -122,6 +122,7 @@
           </div>
         </div>
       </div>
+      <script src="Js/login.js"></script>
 </body>
 
 </html>
@@ -246,5 +247,4 @@
       })
   }
 </script>
-<script src="./Js/pokemones.js"></script>
-<script src="./Js/login.js"></script>
+<script src="Js/pokemones.js"></script>

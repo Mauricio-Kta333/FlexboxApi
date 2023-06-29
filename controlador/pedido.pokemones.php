@@ -12,17 +12,18 @@ foreach ($datosPokemon['pokemones'] as $datos) {
     $idPedido = $datosPokemon['pedido']['id'];
     
     $pedidoMP->setIdPo($datos['id']);
-    $pedidoMP->setCantidadPo($datos['cantidad']);
+    $pedidoMP->setCantidadPoke($datos['cantidad']);
     $pedidoMP->setIdPed($idPedido); // Agrega el ID del pedido al objeto Pedido
 
     $response = $pedidoMP->agregarDatosPokemones();
 
     $responses[] = $response;
+
+    $pedidoMP->disminuirCantidadPokemones();
 }
 
-
 header('Content-Type: application/json');
-echo json_encode($response);
+echo json_encode($responses);
 
 unset($pedidoMP);
-
+?>

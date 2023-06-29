@@ -24,7 +24,7 @@ class Pedidos
 
     private $idPed;
     private $idPo;
-    private $cantidadPo;
+    private $cantidadPoke;
     private $estadoP;
     public $conexion;
 
@@ -68,10 +68,10 @@ class Pedidos
         try {
             $this->estadoP = 'A';
 
-            $sql = $this->conexion->getCon()->prepare("INSERT INTO pedprod(idPed, idPo, cantidadPo, estado) VALUES (?, ?, ?, ?)");
+            $sql = $this->conexion->getCon()->prepare("INSERT INTO pedprod(idPed, idPo, cantidadPoke, estado) VALUES (?, ?, ?, ?)");
             $sql->bindParam(1, $this->idPed);
             $sql->bindParam(2, $this->idPo);
-            $sql->bindParam(3, $this->cantidadPo);
+            $sql->bindParam(3, $this->cantidadPoke);
             $sql->bindParam(4, $this->estadoP);
 
             $sql->execute();
@@ -81,7 +81,18 @@ class Pedidos
         }
     }
 
-
+    function disminuirCantidadPokemones()
+    {
+        try {
+            $sql = $this->conexion->getCon()->prepare("UPDATE pokemones SET cantidadPo = cantidadPo - (SELECT SUM(cantidadPoke) FROM pedprod WHERE idPo = ? AND idPed = (SELECT MAX(idPed) FROM pedprod)) WHERE id = ?");
+                                                    
+            $sql->bindParam(1, $this->idPo);
+            $sql->bindParam(2, $this->idPo);
+            $sql->execute();
+        } catch (PDOException $e) {
+            return "Error al disminuir la cantidad de pokemones: " . $e->getMessage();
+        }
+    }    
 
     /**
      * Get the value of idPed
@@ -126,9 +137,9 @@ class Pedidos
     /**
      * Get the value of cantidadPo
      */
-    public function getCantidadPo()
+    public function getCantidadPoke()
     {
-        return $this->cantidadPo;
+        return $this->cantidadPoke;
     }
 
     /**
@@ -136,9 +147,9 @@ class Pedidos
      *
      * @return  self
      */
-    public function setCantidadPo($cantidadPo)
+    public function setCantidadPoke($cantidadPoke)
     {
-        $this->cantidadPo = $cantidadPo;
+        $this->cantidadPoke = $cantidadPoke;
 
         return $this;
     }

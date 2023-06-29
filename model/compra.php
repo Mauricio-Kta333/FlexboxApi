@@ -2,8 +2,6 @@
 
 namespace modelo;
 
-use Error;
-use Exception;
 use PDOException;
 
 include_once "conexion.php";
@@ -13,7 +11,6 @@ class Compras
     private $id;
     private $codigoCom;
     private $estado;
-
 
     private $idCom;
     private $idPo;
@@ -36,6 +33,7 @@ class Compras
             $sql->bindParam(1, $this->codigoCom);
             $sql->bindParam(2, $this->estado);
             $sql->execute();
+
             return "Pokemon comprado correctamente";
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
@@ -54,11 +52,27 @@ class Compras
             $sql->bindParam(3, $this->cantidadPoCom);
             $sql->bindParam(4, $this->estadoP);
             $sql->execute();
-            return "Pokemon comprado correctamente";
+
+            return "Detalle de compra agregado correctamente";
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
     }
+
+    function actualizarCantidadPokemones()
+{
+    try {
+        $sql = $this->conexion->getCon()->prepare("UPDATE pokemones SET cantidadPo = cantidadPo + (SELECT SUM(cantidadPoCom) FROM comprod WHERE idPo = ? AND idCom = (SELECT MAX(idCom) FROM comprod)) WHERE id = ?");
+        $sql->bindParam(1, $this->idPo);
+        $sql->bindParam(2, $this->idPo);
+        $sql->execute();
+    } catch (PDOException $e) {
+        return "Error al actualizar la cantidad de pokemones: " . $e->getMessage();
+    }
+}
+
+    
+
 
     /**
      * Get the value of id
